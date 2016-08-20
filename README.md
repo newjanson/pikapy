@@ -16,17 +16,17 @@ Change the ENTER_PASSWORD_HERE to a password of your choice (you will need this 
 
 Save the file and run:
 
-docker build -t pikapy .
+    docker build -t pikapy .
 
 After the image was successfully built, you can run your container with:
 
-docker run -d -p 5900:5900 --cap-add=SYS_ADMIN --name pikapy pikapy
+    docker run -d -p 5900:5900 --cap-add=SYS_ADMIN --name pikapy pikapy
 
 If the container is successfully built it will give you a long container ID that looks like this:
 
-21185ee532f0b8199490f8d5c9a2c338b4527fd8cc62a24e9b4db30e84adbb64
+    21185ee532f0b8199490f8d5c9a2c338b4527fd8cc62a24e9b4db30e84adbb64
 
-If the port is open on your host's firewall, you can now connect to your container through your favourite VNC client
+If the port is open on your host's firewall, you can now connect to your container through your favourite VNC client (like [RealVNC] (https://www.realvnc.com/download/vnc/windows/)), and run pikapy like you would in your local computer.
 
 
 **Windows users**
