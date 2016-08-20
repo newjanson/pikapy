@@ -1,4 +1,5 @@
 FROM phusion/baseimage:latest
+MAINTAINER newjanson
 
 WORKDIR /usr/src/app
 
