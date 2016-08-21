@@ -1,0 +1,27 @@
+version: '2'
+services:
+  torproxy:
+    image: jess/tor-proxy
+    expose:
+      - "9050"
+    restart: "always"
+  privoxy:
+    image: jess/privoxy
+    links:
+      - torproxy
+    expose:
+      - "8118"
+    restart: "always"
+  pikapy:
+    build: .
+    expose:
+      - "5900"
+    links:
+      - privoxy
+    environment:
+      - HTTPS_PROXY=privoxy:8118
+      - HTTP_PROXY=privoxy:8118
+    stdin_open: true
+    cap_add:
+      - SYS_ADMIN
+    tty: true
