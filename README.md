@@ -6,6 +6,12 @@ Description
 -----------
 Automatically creates Pokemon Trainer Club accounts, and reads the ToS making them usable after the recent Niantic patch.
 Text files will be created in your current directory.
+For 2captcha API solving, go here: https://github.com/sriyegna/pikaptcha
+
+Requires pgoapi:
+    
+    pip install git+https://github.com/keyphact/pgoapi.git
+
 
 Installation
 ------------
@@ -45,7 +51,7 @@ Finally, open up your command prompt and paste this command:
 
     pip install git+https://github.com/skvvv/pikapy
 
-If you are still having troubles, you can join us at discord channel https://discord.gg/VvwyS
+If you are still having troubles, you can join us at discord channel https://discord.gg/cnTmt
 
 **Linux users/OSX**
 

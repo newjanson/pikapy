@@ -48,6 +48,14 @@ def parse_arguments(args):
         '-c','--count', type=int,default=1,
         help='Number of accounts to generate.'
     )
+    parser.add_argument(
+        '-n','--numeric', type=int,nargs='?',const=1,default=None,
+        help='Add incrementing digits to the username and email (starting from the specified value or 1, if omitted).'
+    )
+    parser.add_argument(
+        '-d','--dry', type=bool,nargs='?',const=True,default=False,
+        help='Dry run without actually creating any accounts.'
+    )
 
     return parser.parse_args(args)
 
@@ -57,7 +65,7 @@ def entry():
     args = parse_arguments(sys.argv[1:])
     for x in range(0,args.count):
         try:
-            account_info = pikapy.random_account(args.username, args.password, args.email, args.birthday, args.plusmail)
+            account_info = pikapy.random_account(args.username, args.password, args.email, args.birthday, args.plusmail, x, args.numeric, args.dry)
             
             print('  Username:  {}'.format(account_info["username"]))
             print('  Password:  {}'.format(account_info["password"]))
@@ -66,10 +74,11 @@ def entry():
             
             # Accept Terms Service
             
-            accept_tos(account_info["username"], account_info["password"])
+            if args.dry == False:
+                accept_tos(account_info["username"], account_info["password"])
             # Append usernames 
             with open("usernames.txt", "a") as ulist:
-                ulist.write(account_info["username"]+":"+account_info["password"]+"\n")
+                ulist.write(account_info["username"]+":"+account_info["password"]+":"+account_info["email"]+"\n")
                 ulist.close()
         # Handle account creation failure exceptions
         except PTCInvalidPasswordException as err:
